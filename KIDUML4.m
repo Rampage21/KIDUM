@@ -58,3 +58,4 @@ ZQ=double(subs(ZZ,{th1,d2,th3,a3,th4,d5},{Q1,Q2,Q3,0.5,Q4,0.2}));
 figure(1)
 plot3(X,Y,Z);hold on
 plot3(XQ,YQ,ZQ);
+
