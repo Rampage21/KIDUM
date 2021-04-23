@@ -5,16 +5,16 @@ clear all; clc;
 % odpowiadajacej zaplanowanemu torowi ruchu
 
 % NR1
-Q1= deg2rad([10 30 45 50 45 90 120 135 140]);
-Q2=[-0.12 -0.14 -0.15 -0.35 -0.15 -0.25 -0.2 -0.15 -0.35];
-Q3= deg2rad([10 20 30 40 30 20 15 30 40]);
-Q4= deg2rad([-35 -60 -80 -90 -80 -15 -45 -80 -90]);
-
-% NR2
-% Q1= deg2rad([10 30 45 50 45 90 180 270 280]);
+% Q1= deg2rad([10 30 45 50 45 90 120 135 140]);
 % Q2=[-0.12 -0.14 -0.15 -0.35 -0.15 -0.25 -0.2 -0.15 -0.35];
 % Q3= deg2rad([10 20 30 40 30 20 15 30 40]);
 % Q4= deg2rad([-35 -60 -80 -90 -80 -15 -45 -80 -90]);
+
+% NR2
+Q1= deg2rad([10 30 45 50 45 90 180 270 280]);
+Q2=[-0.12 -0.14 -0.15 -0.35 -0.15 -0.25 -0.2 -0.15 -0.35];
+Q3= deg2rad([10 20 30 40 30 20 15 30 40]);
+Q4= deg2rad([-35 -60 -80 -90 -80 -15 -45 -80 -90]);
 
 
 % ustalenie czasow trwania ruchu na poszczegolnych odcinkach toru (w sekundach)
@@ -62,9 +62,9 @@ ZQ=double(subs(ZZ,{th1,d2,th3,a3,th4,d5},{Q1,Q2,Q3,0.5,Q4,0.2}));
 syms a3 d2 d5 real 
 % zadanie wsporzednych środków masy członów względem ich lokalnych
 % układów wspołrzednych
-wsp=[0,0,0,1;0,-d2/2,0,1;-a3/2,0,0,1;0,0,0,1;0,0,-d5/2,1];
+wsp=[0,0,-d2/2,1;0,-d2/2,0,1;-a3/2,0,0,1;0,0,0,1;0,0,-d5/2,1];
 % przyjecie modelu rozkladu masy czlonu
-R=[0,1,1,0,1];
+R=[1,1,1,0,1];
 % w manipulatorze SCARA pierwszy czlon jest pretem (nie cylindryczna kolumna)
 J1=0;
 % wyznaczenie symboliczne macierzy pseudoinercji J i oznaczenie mas członów
