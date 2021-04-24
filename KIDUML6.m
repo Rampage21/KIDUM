@@ -4,7 +4,7 @@ clear; clc;
 syms J1 m2 a2 m3 g t real
 syms q1 q2 q3 dq1 dq2 dq3 ddq1 ddq2 ddq3 real
 % parametry kinematyczne (przemieszczenia, predkosci, przyspieszenia)
-q=[q1,q2,q3];
+q=[q1,q2,q3]; % [th1,a2,d3]
 dq=[dq1,dq2,dq3];
 ddq=[ddq1,ddq2,ddq3];
 
@@ -15,14 +15,14 @@ dqtt=[str2sym('diff(q1(t), t)'),str2sym('diff(q2(t),t)'),str2sym('diff(q3(t), t)
 ddqt=[str2sym('diff(dq1(t), t)'),str2sym('diff(dq2(t),t)'),str2sym('diff(dq3(t), t)')];
 
 % energia kinetyczna
-Ek1 = 1/2*J1*dq1^2;
-Ek2 = 1/2*(J2+m2*p2^2)*cos(q2)^2*dq1^2+1/2*(J2+m2*p2^2)*dq2^2;
-Ek3 = 1/2*m3*(q3^2*cos(q2)^2*dq1^2+q3^2*dq2^2+dq3^2);
+Ek1 = 1/2*J1*dq1^2;                                         % ✓
+Ek2 = 1/2*(m2*a2^2)*cos(q2)^2*dq1^2+1/2*(m2*a2^2)*dq2^2;    % ✗       
+Ek3 = 1/2*m3*(q3^2*cos(q2)^2*dq1^2+q3^2*dq2^2+dq3^2);       % ✗
 Ek = simplify(Ek1+Ek2+Ek3);
 % energia potencjalna
-Ep1 = 0;
-Ep2 = -m2*g*sin(q2)*p2;
-Ep3 = -m3*g*sin(q2)*q3;
+Ep1 = 0;                        % ✓
+Ep2 = m2*g*sin(q1)*q2;          % ✓
+Ep3 = m3*g*sin(q1)*q3;          % ✓
 Ep=simplify(Ep1+Ep2+Ep3);
 % potencjal kinetyczny L
 L=Ek-Ep;
